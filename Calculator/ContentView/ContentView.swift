@@ -52,6 +52,15 @@ enum CalculatorButton: String, CaseIterable {
 }
 
 struct ContentView: View {
+    
+    private let calculatorButtons: [[CalculatorButton]] = [
+        [.clear, .negative, .percent, .divide],
+        [.seven, .eight, .nine, .mutliply],
+        [.four, .five, .six, .subtract],
+        [.one, .two, .three, .add],
+        [.zero, .decimal, .equal]
+    ]
+    
     var body: some View {
         HStack {
             CustomButton(title: "1")
