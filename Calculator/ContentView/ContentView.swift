@@ -62,18 +62,47 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        HStack {
-            CustomButton(title: "1")
+        ZStack {
+            Color.black.ignoresSafeArea()
+            
+            VStack {
+                Spacer()
+                
+                ForEach(calculatorButtons, id: \.self) { row in
+                    HStack(spacing: 12) {
+                        ForEach(row, id: \.self) { button in
+                            Button {
+                                print(button.rawValue)
+                            } label: {
+                                Text(button.rawValue)
+                                    .font(.system(size: 36))
+                                    .foregroundStyle(button.buttonTitleColor)
+                                    .frame(
+                                        width: buttonWidth(button: button),
+                                        height: buttonHeight()
+                                    )
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .foregroundStyle(button.buttonColor)
+                                    }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
-    /// - Custom Calculator Button
-    @ViewBuilder func CustomButton(title: String) -> some View {
-        Text(title)
-            .background {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(. 
-            }
+    // Calculating Button Size Depending on the Screen Size
+    func buttonWidth(button: CalculatorButton) -> CGFloat {
+        if button == .equal {
+            return ((UIScreen.main.bounds.width - (4 * 12)) / 4) * 2
+        }
+        return (UIScreen.main.bounds.width - (5 * 12)) / 4
+    }
+    
+    func buttonHeight() -> CGFloat {
+        return (UIScreen.main.bounds.width - (5*12)) / 4
     }
 }
 
