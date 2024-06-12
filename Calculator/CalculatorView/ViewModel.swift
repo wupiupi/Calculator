@@ -17,6 +17,10 @@ extension CalculatorView {
             calculator.displayText
         }
         
+        var displayAnswer: String {
+            calculator.displayAnswer
+        }
+        
         let calculatorButtons: [[ButtonType]] = [
             [.clear, .negative, .percent, .operation(.division)],
             [.digit(.seven), .digit(.eight), .digit(.nine), .operation(.multiplication)],
@@ -42,12 +46,6 @@ extension CalculatorView {
                 case .clear:
                     calculator.clear()
             }
-        }
-        
-        /// Checks if current buttonType of type .arithmeticOperation is active
-        func buttonTypeIsHighlighted(buttonType: ButtonType) -> Bool {
-            guard case .operation(let operation) = buttonType else { return false }
-            return calculator.operationIsHighlighted(operation)
         }
     }
 }
