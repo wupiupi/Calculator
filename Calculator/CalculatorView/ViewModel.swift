@@ -18,7 +18,10 @@ extension CalculatorView {
         }
         
         var displayResult: String {
-            calculator.displayResult
+            if calculator.displayResult == "NaN" {
+                return "I'm Cooked 🧌"
+            }
+            return calculator.displayResult
         }
         
         let calculatorButtons: [[ButtonType]] = [

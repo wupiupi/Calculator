@@ -27,7 +27,7 @@ struct Calculator {
         }
     }
     
-    // MARK: - PROPERTIES
+    // MARK: - Properties
     private var newNumber: Decimal? {
         didSet {
             guard newNumber != nil else { return }
@@ -97,7 +97,7 @@ struct Calculator {
             newNumber = -number
             return
         }
-        if let number = lastEnteredDigit {
+        if lastEnteredDigit != nil {
             newNumber = -(result ?? 0)
             return
         }
@@ -109,7 +109,7 @@ struct Calculator {
             newNumber = number / 100
             return
         }
-        if let number = lastEnteredDigit {
+        if lastEnteredDigit != nil {
             newNumber = (result ?? 0) / 100
             return
         }
@@ -132,17 +132,15 @@ struct Calculator {
         newNumber = nil
         expression = nil
         result = nil
+        lastEnteredDigit = nil
         carryingNegative = false
         carryingDecimal = false
         carryingZeroCount = 0
-        lastEnteredDigit = nil
     }
-    
-    // MARK: - Helpers
-    func operationIsHighlighted(_ operation: ArithmeticOperation) -> Bool {
-        return expression?.operation == operation && newNumber == nil
-    }
-    
+}
+
+// MARK: - Helpers
+extension Calculator {
     private func getNumberString(forNumber number: Decimal?, withCommas: Bool = false) -> String {
         var numberString = (withCommas ? number?.formatted(.number) : number.map(String.init)) ?? "0"
         
@@ -157,7 +155,6 @@ struct Calculator {
         if carryingZeroCount > 0 {
             numberString.append(String(repeating: "0", count: carryingZeroCount))
         }
-        
         return numberString
     }
     
