@@ -40,11 +40,11 @@ struct Calculator {
     private var expression: ArithmeticExpression?
     private var result: Decimal?
     
-    private var carryingNegative: Bool = false
-    private var carryingDecimal: Bool = false
-    private var carryingZeroCount: Int = 0
+    private var carryingNegative = false
+    private var carryingDecimal = false
+    private var carryingZeroCount = 0
     
-    private var pressedClear: Bool = false
+    private var pressedClear = false
     
     // MARK: - Computed Properties (getters)
     var displayText: String {
