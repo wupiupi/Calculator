@@ -24,7 +24,7 @@ struct CalculatorView: View {
                 Divider()
                 
                 CalculatorButtons()
-                    .padding(.bottom, 3)
+                    .padding(.bottom, 5)
             }
         }
     }
@@ -34,7 +34,6 @@ struct CalculatorView: View {
         Text(viewModel.displayText)
             .modifier(TextModifier())
             .foregroundColor(.white)
-        
     }
     
     @ViewBuilder
