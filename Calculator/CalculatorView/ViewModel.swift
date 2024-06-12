@@ -12,14 +12,9 @@ import Foundation
 extension CalculatorView {
     final class ViewModel: ObservableObject {
         @Published var calculator = Calculator()
-        @Published var isOperationButtonTapped = false
         
         var displayText: String {
             calculator.displayText
-        }
-        
-        var history: String {
-            calculator.history
         }
         
         let calculatorButtons: [[ButtonType]] = [
@@ -44,10 +39,8 @@ extension CalculatorView {
                     calculator.setDecimal()
                 case .equal:
                     calculator.evaluate()
-                    isOperationButtonTapped = true
                 case .clear:
                     calculator.clear()
-                    isOperationButtonTapped = false
             }
         }
         
