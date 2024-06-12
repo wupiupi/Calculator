@@ -28,6 +28,7 @@ struct Calculator {
     }
     
     // MARK: - Private Properties
+    private var lastNumber: Decimal?
     private var newNumber: Decimal? {
         didSet {
             guard newNumber != nil else { return }
@@ -35,6 +36,7 @@ struct Calculator {
             carryingDecimal = false
             carryingZeroCount = 0
             pressedClear = false
+            lastNumber = newNumber
         }
     }
     private var expression: ArithmeticExpression?
@@ -47,12 +49,12 @@ struct Calculator {
     private var pressedClear = false
     
     // MARK: - Computed Properties (getters)
-    var displayText: String {
+    var displayAnswer: String {
         return getNumberString(forNumber: number, withCommas: true)
     }
     
-    var showAllClear: Bool {
-        newNumber == nil && expression == nil && result == nil || pressedClear
+    var displayText: String {
+        return getNumberString(forNumber: lastNumber)
     }
         
     var number: Decimal? {
@@ -124,19 +126,14 @@ struct Calculator {
     
     mutating func clear() {
         newNumber = nil
+        expression = nil
+        result = nil
         carryingNegative = false
         carryingDecimal = false
         carryingZeroCount = 0
-        
-        pressedClear = true
     }
     
     // MARK: - HELPERS
-    
-    func operationIsHighlighted(_ operation: ArithmeticOperation) -> Bool {
-        return expression?.operation == operation && newNumber == nil
-    }
-    
     private func getNumberString(forNumber number: Decimal?, withCommas: Bool = false) -> String {
         var numberString = (withCommas ? number?.formatted(.number) : number.map(String.init)) ?? "0"
         
@@ -156,6 +153,6 @@ struct Calculator {
     }
     
     private func canAddDigit(_ digit: Digit) -> Bool {
-        return number != nil || digit != .zero
+        number != nil || digit != .zero
     }
 }
