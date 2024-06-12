@@ -39,7 +39,7 @@ struct CalculatorView: View {
     
     @ViewBuilder
     func AnswerText() -> some View {
-        Text(viewModel.displayAnswer)
+        Text(viewModel.displayResult)
             .modifier(TextModifier())
             .foregroundColor(Color(hex: 0x969696))
     }

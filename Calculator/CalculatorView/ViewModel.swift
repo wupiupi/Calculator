@@ -17,8 +17,8 @@ extension CalculatorView {
             calculator.displayText
         }
         
-        var displayAnswer: String {
-            calculator.displayAnswer
+        var displayResult: String {
+            calculator.displayResult
         }
         
         let calculatorButtons: [[ButtonType]] = [
