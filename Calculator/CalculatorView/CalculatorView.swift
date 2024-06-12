@@ -17,6 +17,8 @@ struct CalculatorView: View {
             VStack {
                 DisplayedText()
                 
+                AnswerText()
+                
                 Spacer()
                 
                 Divider()
@@ -29,13 +31,17 @@ struct CalculatorView: View {
     
     @ViewBuilder
     func DisplayedText() -> some View {
-        HStack(spacing: 20) {
-            Spacer()
-            
-            Text(viewModel.displayText)
-                .modifier(TextModifier())
-                .foregroundColor(.white)
-        }
+        Text(viewModel.displayText)
+            .modifier(TextModifier())
+            .foregroundColor(.white)
+        
+    }
+    
+    @ViewBuilder
+    func AnswerText() -> some View {
+        Text(viewModel.displayAnswer)
+            .modifier(TextModifier())
+            .foregroundColor(Color(hex: 0x969696))
     }
     
     @ViewBuilder
