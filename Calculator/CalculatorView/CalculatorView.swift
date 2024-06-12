@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalculatorView: View {
-    @EnvironmentObject private var viewModel: CalculatorViewModel
+    @EnvironmentObject private var viewModel: CalculatorView.ViewModel
     
     var body: some View {
         ZStack {
@@ -32,11 +32,9 @@ struct CalculatorView: View {
         HStack(spacing: 20) {
             Spacer()
             
-            Text(viewModel.displayedText)
-                .padding(.top, 20)
-                .padding(.trailing, 16)
-                .font(.system(size: 48))
-                .foregroundStyle(.white)
+            Text(viewModel.displayText)
+                .modifier(TextModifier())
+                .foregroundColor(.white)
         }
     }
     
@@ -48,6 +46,17 @@ struct CalculatorView: View {
                     CalculatorButton(buttonType: button)
                 }
             }
+        }
+    }
+    
+    struct TextModifier: ViewModifier {
+        func body(content: Content) -> some View {
+            content
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .font(.system(size: 48, weight: .light))
+                .lineLimit(1)
+                .minimumScaleFactor(0.2)
         }
     }
 }
