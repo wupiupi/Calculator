@@ -53,7 +53,7 @@ struct Calculator {
     }
     
     var displayText: String {
-        return getNumberString(forNumber: number, withCommas: true)
+        getNumberString(forNumber: number, withCommas: true)
     }
     
     var showAllClear: Bool {
@@ -68,7 +68,7 @@ struct Calculator {
     }
     
     private var containsDecimal: Bool {
-        return getNumberString(forNumber: number).contains(".")
+        getNumberString(forNumber: number).contains(".")
     }
     
     // MARK: - OPERATIONS
@@ -159,6 +159,6 @@ extension Calculator {
     }
     
     private func canAddDigit(_ digit: Digit) -> Bool {
-        return number != nil || digit != .zero
+        number != nil || digit != .zero
     }
 }
